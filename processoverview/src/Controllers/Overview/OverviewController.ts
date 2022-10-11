@@ -2,12 +2,14 @@ import { Bindable } from './Bindable';
 import { MVIActivityBox } from './Views/ActivityBox';
 import { int, Convert, TMath } from '@tuval/core';
 import { TvChart } from '@realmocean/charts';
-import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading } from '@tuval/forms';
+import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading, HStack, cLeading, Spacer, ForEach } from '@tuval/forms';
 import { ActivitySection } from './Views/ActivitySection';
 import { HappyPathSection } from './Views/HappyPathSection';
 import { MetricsSection, MVIMetricSection } from './Views/MetricsSection';
 import { MVIHappyPathDiagramItem } from './Views/HappyPathDiagram';
 import { IProjectModel, MiningBrokerClient, Services, MIHappyPath } from '@procetra/common';
+import { PageTitle } from '../../Views/PageTitle';
+import { PageNavigate } from '../../Views/PageNavigate';
 
 let data = [
     { x: new Date(2021, 1, 1), y: 532.2 }, { x: new Date(2021, 2, 1), y: 453.4 },
@@ -61,6 +63,7 @@ const happyPathDiagramModelTest: MVIHappyPathDiagramItem[] = [
 
 export class OverviewController extends UIController {
 
+    @State()
     private project: IProjectModel;
 
     @State()
@@ -212,6 +215,7 @@ export class OverviewController extends UIController {
     public LoadView(): UIView {
         return (
             VStack({ alignment: cTopLeading })(
+                PageNavigate(this.project?.project_id,0,this.navigotor),
                 MetricsSection(this.metricSectionModel),
                 HappyPathSection(this.happyPathModel),
                 ActivitySection(this.activities)

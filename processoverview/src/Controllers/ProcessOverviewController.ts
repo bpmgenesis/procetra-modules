@@ -135,48 +135,7 @@ export class ProcessOverviewController extends UIController {
                         }
                     ),
                     VStack({ alignment: cTopLeading, spacing: 10 })(
-                        HStack({ alignment: cLeading, spacing: 10 })(
-                            PageTitle(sideMenu[0/* this.selectedIndex */].icon, sideMenu[0/* this.selectedIndex */].name),
-                            Spacer(),
-
-                            // View Buttons Overview, Throuthput Times
-                            // Only Desktop
-                            HStack({ spacing: 5 })(
-                                ...ForEach(sideMenu)((item: MVIPortalSideMenuItem, index: int) =>
-                                    UIButton(
-                                        Icon(item.icon).size(14).foregroundColor('gray'),
-                                        Text(item.name).paddingLeft('5px')
-                                    )
-                                        .action(() => this.OnControllerChanged(index))
-                                        .border('solid 1px gray')
-                                        .cornerRadius('10px')
-                                        .padding('3px 10px 3px 10px')
-                                        .background(this.selectedIndex === index ? 'rgb(120,120,120,20%)' : '')
-                                )
-                            )
-                                .width() // auto width
-                                .visible(TApplication.IsDesktop),
-
-                            // Portal
-                            HStack({ spacing: 30 })(
-                                VStack(
-                                    Text('traces').foregroundColor('#495057').textTransform('uppercase').fontWeight('700').fontSize('14px').fontFamily('Roboto, sans-serif'),
-                                    Text('0').foregroundColor('#999').fontWeight('700').fontSize('27px').fontFamily('Roboto, sans-serif'),
-                                ),
-                                VStack(
-                                    Text('events').foregroundColor('#495057').textTransform('uppercase').fontWeight('700').fontSize('14px').fontFamily('Roboto, sans-serif'),
-                                    Text('0').foregroundColor('#2ca3c0').fontWeight('700').fontSize('27px').fontFamily('Roboto, sans-serif'),
-                                ),
-                                VStack(
-                                    Text('variants').foregroundColor('#495057').textTransform('uppercase').fontWeight('700').fontSize('14px').fontFamily('Roboto, sans-serif'),
-                                    Text('0').foregroundColor('#b40404').fontWeight('700').fontSize('27px').fontFamily('Roboto, sans-serif'),
-                                )
-                            )
-                                .width() //auto width
-                                .visible(TApplication.IsPortal)
-
-                        ).height(),
-                        HDivider().height('1px').backgroundColor('rgb(120,120,120,20%)'),
+                        
                         VStack({ alignment: cTopLeading })( // For scrolling
                             //this.currentController
                             UIRouteOutlet().width('100%').height('100%')
@@ -191,9 +150,10 @@ export class ProcessOverviewController extends UIController {
     }
     public LoadView(): UIView {
         return (
-            FormView({
+            
+              FormView({
                 content: this.view_Content()
-            })
+            })  
         )
     }
 }

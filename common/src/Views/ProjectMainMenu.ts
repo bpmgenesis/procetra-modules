@@ -3,6 +3,20 @@ import { int } from '@tuval/core';
 import { Resources } from '../Resources/Resources';
 import { AnimHeadline5, RegularText } from './Texts';
 
+const miningModules = [
+    {
+        icon: '\\d2dc',
+        name: 'Process Overview'
+    },
+    {
+        icon: '\\d2db',
+        name: 'Dashboard'
+    },
+    {
+        icon: '\\d320',
+        name: 'Discover'
+    },
+]
 /***
  * Proje sayfalarının başlığı, menulerin sorumlusu
  */
@@ -25,16 +39,17 @@ export const ProjectMainMenu = (
             VStack({ alignment: cLeading })(
                 AnimHeadline5(project_name).lineHeight(35).whiteSpace('nowrap'),
                 UIContextMenu(
-                    ...ForEach(miningModels)(item =>
-                        HStack(
-                            Text(item.model_name).onClick(() => OnMiningModelChanged(item))
-                        ).padding(5)
+                    ...ForEach(miningModules)(item =>
+                        HStack({ alignment: cLeading, spacing: 10 })(
+                            Icon(item.icon).size(20),
+                            Text(item.name).onClick(() => OnMiningModelChanged(item))
+                        ).padding(10)
                     )
                 )(
                     RegularText(model_name).whiteSpace('nowrap')
                 )
                     .cornerRadius(5)
-                    .padding(cHorizontal, 5).cursor('pointer')
+                    .paddingRight('5px').cursor('pointer')
                     .border('dotted 1px var(--sub-border-color)'),
             ).marginLeft('5px').marginRight('10px').width(),
             VDivider().width(1).height('60%').backgroundColor('rgb(120,120,120,50%)'),

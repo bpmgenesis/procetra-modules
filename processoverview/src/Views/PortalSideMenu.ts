@@ -11,7 +11,8 @@ export interface PortalSideMenuParams {
 export interface MVIPortalSideMenuItem {
     name: string;
     icon: string;
-    controller: UIController;
+    controller?: UIController;
+    url?:string;
     isVisible: () => boolean;
 }
 export function PortalSideMenu(params: PortalSideMenuParams): UIView {
