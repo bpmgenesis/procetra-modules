@@ -24,7 +24,7 @@ import { cLeading, cTopLeading } from '@tuval/forms';
 import { ActivityController } from './Activity/ActivityController';
 import { MVIPortalSideMenuItem, PortalSideMenu } from '../Views/PortalSideMenu';
 import { PageTitle } from '../Views/PageTitle';
-import { IProjectModel, MiningBrokerClient, FormView } from '@procetra/common';
+import { IProjectModel, MiningBrokerClient, FormView, ProjectMainMenu } from '@procetra/common';
 
 
 function getMax(array: any[]) {
@@ -60,6 +60,7 @@ const sideMenu: MVIPortalSideMenuItem[] = [
 
 export class ProcessOverviewController extends UIController {
 
+    @State()
     private project: IProjectModel;
 
     @State()
@@ -149,11 +150,17 @@ export class ProcessOverviewController extends UIController {
         )
     }
     public LoadView(): UIView {
-        return (
+        /* return (
             
               FormView({
                 content: this.view_Content()
             })  
+        ) */
+        return (
+            VStack(
+                ProjectMainMenu(this,this.project?.project_name, 'Process Overview',  0, 0, [], () => alert(''), this.menu, [], []),
+                this.view_Content()
+            )
         )
     }
 }
