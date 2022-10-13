@@ -1,7 +1,8 @@
 import {
     HStack, cLeading, Icon, VStack, UIContextMenu,
     ForEach, Text, cHorizontal, VDivider, HDivider, Spacer, TApplication, UIImage, PositionTypes,
-    UIController
+    bindState,
+    UIController, useEffect
 } from '@tuval/forms';
 import { int } from '@tuval/core';
 import { Resources } from '../Resources/Resources';
@@ -32,8 +33,6 @@ export const ProjectMainMenu = (
     controller: UIController,
     project: IProjectModel,
     model_name: string,
-    eventCount: int,
-    caseCount: int,
     miningModels: any[],
     OnMiningModelChanged: Function,
     menu: any[],
@@ -94,6 +93,22 @@ export const ProjectMainMenu = (
         }
     ]
 
+    const [eventCount, setEventCount] = bindState(0)
+    const [caseCount, setCaseCount] = bindState(0)
+    useEffect(() => {
+        if(project != null) {
+            Promise.all([
+                MiningBrokerClient.GetEventCount(project?.project_id),
+                MiningBrokerClient.GetCaseCount(project?.project_id)
+            ]).then (result => {
+                const [eventCount, caseCount] = result;
+                setEventCount(eventCount);
+                setCaseCount(caseCount);
+            })
+           
+        }
+    });
+
 
     return (
         VStack(
@@ -130,6 +145,7 @@ export const ProjectMainMenu = (
                                     RegularText(item.title)
                                     //  .padding(cHorizontal, 16)
                                 )
+                                    .padding(10)
                                     .onClick(() => { item.command(item) })
 
 

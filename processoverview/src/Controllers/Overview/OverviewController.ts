@@ -2,7 +2,7 @@ import { Bindable } from './Bindable';
 import { MVIActivityBox } from './Views/ActivityBox';
 import { int, Convert, TMath } from '@tuval/core';
 import { TvChart } from '@realmocean/charts';
-import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading, HStack, cLeading, Spacer, ForEach } from '@tuval/forms';
+import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading, HStack, cLeading, Spacer, ForEach, UIChart } from '@tuval/forms';
 import { ActivitySection } from './Views/ActivitySection';
 import { HappyPathSection } from './Views/HappyPathSection';
 import { MetricsSection, MVIMetricSection } from './Views/MetricsSection';
@@ -99,14 +99,14 @@ export class OverviewController extends UIController {
 
     }
 
-    public BindRouterParams({project_id}) {
+    public BindRouterParams({ project_id }) {
         MiningBrokerClient.GetProjectById(project_id).then(project => {
             this.project = project;
             const session_id = Services.StateService.GetSessionId();
-            MiningBrokerClient.GetHappyPath( this.project.project_id).then((info: any) => {
+            MiningBrokerClient.GetHappyPath(this.project.project_id).then((info: any) => {
                 this.happyPathModel = info;
             });
-            MiningBrokerClient.GetActivities( this.project.project_id, 'concept:name').then((info: any) => {
+            MiningBrokerClient.GetActivities(this.project.project_id, 'concept:name').then((info: any) => {
                 console.log(info);
                 this.activities = [];
                 for (let key in info) {
@@ -118,7 +118,9 @@ export class OverviewController extends UIController {
                 }
             });
 
-            MiningBrokerClient.GetDailyCasesPerMonth( this.project.project_id).then((info: any) => {
+            MiningBrokerClient.GetActivitiesCount(this.project.project_id, 'concept:name').then(result => console.log(result))
+
+            MiningBrokerClient.GetDailyCasesPerMonth(this.project.project_id).then((info: any) => {
                 const result = [];
                 for (let i = 0; i < info.daily_cases_per_month.length; i++) {
                     result.push({
@@ -213,9 +215,12 @@ export class OverviewController extends UIController {
     }
 
     public LoadView(): UIView {
+
         return (
+
             VStack({ alignment: cTopLeading })(
-                PageNavigate(this.project?.project_id,0,this.navigotor),
+              
+                PageNavigate(this.project?.project_id, 0, this.navigotor),
                 MetricsSection(this.metricSectionModel),
                 HappyPathSection(this.happyPathModel),
                 ActivitySection(this.activities)

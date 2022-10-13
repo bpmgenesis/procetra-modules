@@ -158,7 +158,7 @@ export class ProcessOverviewController extends UIController {
         ) */
         return (
             VStack(
-                ProjectMainMenu(this,this.project?.project_name, 'Process Overview',  0, 0, [], () => alert(''), this.menu, [], []),
+                ProjectMainMenu(this,this.project, 'Process Overview', [], () => alert(''), null, [], []),
                 this.view_Content()
             )
         )

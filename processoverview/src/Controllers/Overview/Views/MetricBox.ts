@@ -1,6 +1,6 @@
 import { Sparkline, SparklineModel } from '@realmocean/charts';
 import { Bindable } from '../Bindable';
-import { UIView, VStack, Text, Alignment, TApplication, ApplicationModes, HStack, ZStack, AnimationStack, useState, cLeading, cTopLeading } from '@tuval/forms';
+import { UIView, VStack, Text, Alignment, TApplication, ApplicationModes, HStack, ZStack, AnimationStack, useState, cLeading, cTopLeading, UIChart, Spacer } from '@tuval/forms';
 
 
 import { TileSparkLine } from './TileSparkLine';
@@ -79,24 +79,82 @@ export function PortalMetricBox(params: MVIMetricBox, selected: boolean): UIView
         ).margin('2px')
     )
 }
-export function DesktopMetricBox(params: MVIMetricBox): UIView {
+export function DesktopMetricBox(params: MVIMetricBox, selected:boolean): UIView {
     return (
         VStack({ alignment: cTopLeading })(
             TileBoxHeaderText(params.title),
-            Text(params.value).padding('10px 30px 0 30px;').fontFamily('Proxima Nova').fontSize('27px').fontWeight('500').foregroundColor('#14a9d5'),
-            Text(params.subTitle).paddingLeft('30px').fontFamily('Proxima Nova').fontSize('12px').foregroundColor('#666'),
+            //Text(params.value).padding('10px 30px 0 30px;').fontFamily('Proxima Nova').fontSize('27px').fontWeight('500').foregroundColor('#14a9d5'),
+            //Text(params.subTitle).paddingLeft('30px').fontFamily('Proxima Nova').fontSize('12px').foregroundColor('#666'),
+            //Spacer(),
+            UIChart().series([
+                {
+                    data: [
+                        {
+                            x: 1,
+                            y: 10
+                        },
+                        {
+                            x: 2,
+                            y: 30
+                        },
+                        {
+                            x: 3,
+                            y: 20
+                        }
+                    ]
+                }
+            ]).options({
+                    chart: {
+                      type: 'area',
+                     // height: 20,
+                      sparkline: {
+                        enabled: true
+                      },
+                    },
+                     title: {
+                        text: params.value,
+                        offsetX: 20,
+                        style: {
+                          fontSize: '27px',
+                          fontFamily:'Proxima Nova',
+                          fontWeight:'500',
+                          color:'#14a9d5'
+                        }
+                      }, 
+                      subtitle: {
+                        text: params.subTitle,
+                        offsetX: 20,
+                        style: {
+                          fontSize: '12px',
+                          fontFamily:'Proxima Nova',
+                          color:'#666'
+                        }
+                      },
+                    stroke: {
+                      curve: 'straight',
+                  
+                        colors:[selected ? 'rgb(251, 205, 78)' : 'rgb(200,196,198)']
+                     
+                    },
+                    fill: {
+                        colors:[selected ? 'rgb(251, 205, 78)' : 'rgb(200,196,198)'],
+                      opacity: 0.3
+                    }
+                  
+            }).chartType('area').chartHeight(110).height()
         )
             .height('148px')
             .backgroundColor('rgb(255,255,255,60%)')
             .cornerRadius('12px')
             .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
             .tabIndex(0)
+            .overflow('hidden')
     )
 }
 
 export function MetricBox(params: MVIMetricBox, selected: boolean): UIView {
     if (TApplication.ApplicationMode === ApplicationModes.Desktop) {
-        return DesktopMetricBox(params);
+        return DesktopMetricBox(params, selected);
     } else {
         return PortalMetricBox(params, selected);
     }

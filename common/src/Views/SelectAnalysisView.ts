@@ -39,7 +39,7 @@ const NewAnalyseTypes: MVINewAnalyseModelSelection[] = [
         icon: '\\d2dc',
         title: 'Process Overview',
         description: 'An overhead view of your process',
-        link: (project: IProjectModel) => `/app(procetra)/project/${project.project_id}/modules/process-overview/overview`
+        link: (project: IProjectModel) => `/app(procetra)/project/${project?.project_id}/modules/process-overview/overview`
     },
     {
         id: 'dashboard',

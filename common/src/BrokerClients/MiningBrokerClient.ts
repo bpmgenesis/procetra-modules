@@ -254,6 +254,20 @@ export class MiningBrokerClient {
         });
     }
 
+    public static async GetActivitiesCount( project_id: string, activity_key: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const form = new FormData();
+            form.append('project_id', project_id);
+            form.append('activity_key', activity_key);
+            // form.append('max_no_variants', '10');
+
+            RealmHttpClient.Post(ConfigService.GetMiningBrokerUrl() + 'GetActivitiesCount?token=', form)
+                .then(response => {
+                    resolve(response.data);
+                });
+        });
+    }
+
     public static async GetThroughputTimes(project_id: string, activity_key: string): Promise<any> {
         return new Promise((resolve, reject) => {
             const form = new FormData();
@@ -262,6 +276,20 @@ export class MiningBrokerClient {
             // form.append('max_no_variants', '10');
 
             RealmHttpClient.Post(ConfigService.GetMiningBrokerUrl() + 'GetThroughputTimes?token=', form)
+                .then(response => {
+                    resolve(response.data);
+                });
+        });
+    }
+
+    public static async GetActivitiesThroughputTimes(project_id: string, activity_key: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const form = new FormData();
+            form.append('project_id', project_id);
+            form.append('activity_key', activity_key);
+            // form.append('max_no_variants', '10');
+
+            RealmHttpClient.Post(ConfigService.GetMiningBrokerUrl() + 'GetActivitiesThroughputTimes?token=', form)
                 .then(response => {
                     resolve(response.data);
                 });

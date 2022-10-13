@@ -25,7 +25,7 @@ export const PageNavigate = (project_id: string, selectedIndex: int, navigator: 
         {
             name: 'Activities',
             icon: '\\d2fd',
-            url: `/app(procetra)/project/${project_id}/modules/process-overview/overview`,
+            url: `/app(procetra)/project/${project_id}/modules/process-overview/activities`,
             isVisible: () => true
         }
     ]

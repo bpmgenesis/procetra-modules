@@ -19,3 +19,4 @@ export * from './CancelButton';
 export * from './FormView';
 export * from './SelectAnalysisView';
 export * from './ProjectMainMenu';
+export * from './LoadingScreen';
