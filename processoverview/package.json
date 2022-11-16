@@ -101,10 +101,10 @@
         ]
     },
     "devDependencies": {
-        "@realmocean/charts": "^0.0.6",
+        "@realmocean/charts": "^0.0.14",
         "@tuval/cg": "^0.0.16",
-        "@tuval/core": "^0.0.94",
-        "@tuval/forms": "^0.0.88",
+        "@tuval/core": "^0.0.96",
+        "@tuval/forms": "^0.0.150",
         "@tuval/graphics": "^0.0.10",
         "css-loader": "^3.2.0",
         "d3-graphviz": "^4.0.0",

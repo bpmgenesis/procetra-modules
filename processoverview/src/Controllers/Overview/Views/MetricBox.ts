@@ -1,6 +1,6 @@
 import { Sparkline, SparklineModel } from '@realmocean/charts';
 import { Bindable } from '../Bindable';
-import { UIView, VStack, Text, Alignment, TApplication, ApplicationModes, HStack, ZStack, AnimationStack, useState, cLeading, cTopLeading, UIChart, Spacer } from '@tuval/forms';
+import { UIView, VStack, Text, Alignment, TApplication, ApplicationModes, HStack, ZStack, AnimationStack, useState, cLeading, cTopLeading, UIChart, Spacer, Theme } from '@tuval/forms';
 
 
 import { TileSparkLine } from './TileSparkLine';
@@ -144,7 +144,7 @@ export function DesktopMetricBox(params: MVIMetricBox, selected:boolean): UIView
             }).chartType('area').chartHeight(110).height()
         )
             .height('148px')
-            .backgroundColor('rgb(255,255,255,60%)')
+            .backgroundColor(Theme.darkBackgroundColor)
             .cornerRadius('12px')
             .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
             .tabIndex(0)

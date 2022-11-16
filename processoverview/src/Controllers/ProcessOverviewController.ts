@@ -160,7 +160,7 @@ export class ProcessOverviewController extends UIController {
             VStack(
                 ProjectMainMenu(this,this.project, 'Process Overview', [], () => alert(''), null, [], []),
                 this.view_Content()
-            )
+            ).background('var(--dark-background-color)')
         )
     }
 }

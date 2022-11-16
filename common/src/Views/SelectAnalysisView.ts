@@ -247,12 +247,12 @@ function NewAnalyseModelTitleBox(tag: string, project, { id, icon, title, descri
                 description && RegularText(description).fontSize('12px')
             )
 
-                .marginTop('10px')
-                .marginRight('10px')
-                .cornerRadius(10)
-                .width(240).height(150)
-                .backgroundColor('rgba(255,255,255,0.3)')
-                .shadow('rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px')
+                .margin(14)
+                .cornerRadius(8)
+                .width(290).height(200)
+                .background('var(--secondary-background-color)')
+               
+                .shadow(' 0px 3px 12px var(--application-border-color)')
                 .initial({ opacity: 0 }).animate({ opacity: 1 })
                 .onClick(() => controller.navigotor(link(project)))
                 .variable('--sub-border-color', { default: 'transparent', hover: '#14a9d5' })

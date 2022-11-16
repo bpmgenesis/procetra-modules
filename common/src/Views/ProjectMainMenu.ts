@@ -256,9 +256,9 @@ export const ProjectMainMenu = (
                 .variable('--sub-border-color', { default: 'transparent', hover: '#14a9d5' })
         )
             .height()
-            .background('rgb(255,255,255,20%)')
+            .background('var(--application-background-color)')
             .marginBottom('10px')
-            .shadow('0 0 8px 0 #ccc')
+            .shadow('0px 3px 12px var(--application-border-color)')
             .visible(TApplication.IsDesktop)
     )
 

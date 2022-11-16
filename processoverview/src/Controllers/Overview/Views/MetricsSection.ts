@@ -1,5 +1,5 @@
 import { int } from '@tuval/core';
-import { TvChart, ChartView, AreaSerie, MyControlBody } from '@realmocean/charts';
+import { TvChart, UIChartsView, AreaSerie, MyControlBody } from '@realmocean/charts';
 import { UIView, VStack, HStack, Text, Alignment, Spacer, UIButton, Icon, ForEach, cTopLeading, useState, bindState } from '@tuval/forms';
 import { MetricBox, MVIMetricBox } from './MetricBox';
 import { TileBoxHeaderText } from '../../../Views/TileBoxHeaderText';
@@ -26,14 +26,15 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                 .height(),
             HStack({ spacing: 10 })(
                 ...ForEach(params?.metricBoxNodels)((metricBoxModel, index) =>
-                    MetricBox(metricBoxModel, selectedIndex === index).onClick(() => setSelectedIndex(index)),
+                Text('sad')
+                 //MetricBox(metricBoxModel, selectedIndex === index).onClick(() => setSelectedIndex(index)),
                 )
             ).height(150),
             TileBox(
                 VStack({ alignment: cTopLeading })(
                     TileBoxHeaderText('Daily cases per month').marginBottom('10px'),
                     VStack(
-                        ChartView()(
+                        UIChartsView()(
                             AreaSerie().xName('x').yName('y').border({ color: '#FBCD4E', width: 3 })
                                 .marker({ visible: true, width: 10, height: 10, fill: '#FBB90A', border: { color: 'white' } })
                                 .fill('#FBCD4E55')
@@ -42,7 +43,7 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                                 })
                                 .data(params?.data)
                         )
-                            .xAxis({
+                            .primaryXAxis({
                                 labelStyle: {
                                     fontFamily: 'Ubuntu, sans-serif',
                                     size: '14px'
@@ -53,7 +54,7 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                                 intervalType: 'Months',
                                 edgeLabelPlacement: 'Shift'
                             })
-                            .yAxis({
+                            .primaryYAxis({
                                 labelStyle: {
                                     fontFamily: 'Ubuntu, sans-serif',
                                     size: '14px'
@@ -64,7 +65,8 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                                 majorTickLines: { width: 0 },
                                 minorTickLines: { width: 0 }
                             })
-                            .backgroundColor('transparent')
+                            .backgroundColor('transparent'),
+                            
                     )
                 )
             ).height('300px')

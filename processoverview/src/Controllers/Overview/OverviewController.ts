@@ -2,7 +2,7 @@ import { Bindable } from './Bindable';
 import { MVIActivityBox } from './Views/ActivityBox';
 import { int, Convert, TMath } from '@tuval/core';
 import { TvChart } from '@realmocean/charts';
-import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading, HStack, cLeading, Spacer, ForEach, UIChart } from '@tuval/forms';
+import { UIController, UIView, VStack, PositionTypes, Alignment, State, cTopLeading, HStack, cLeading, Spacer, ForEach, UIChart, cHorizontal } from '@tuval/forms';
 import { ActivitySection } from './Views/ActivitySection';
 import { HappyPathSection } from './Views/HappyPathSection';
 import { MetricsSection, MVIMetricSection } from './Views/MetricsSection';
@@ -219,12 +219,13 @@ export class OverviewController extends UIController {
         return (
 
             VStack({ alignment: cTopLeading })(
-              
                 PageNavigate(this.project?.project_id, 0, this.navigotor),
                 MetricsSection(this.metricSectionModel),
                 HappyPathSection(this.happyPathModel),
                 ActivitySection(this.activities)
-            ).position(PositionTypes.Absolute)
+            )
+            .padding(cHorizontal, 80)
+            .position(PositionTypes.Absolute)
         )
     }
 }
