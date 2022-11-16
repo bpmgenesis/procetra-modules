@@ -144,7 +144,7 @@ export function DesktopMetricBox(params: MVIMetricBox, selected:boolean): UIView
             }).chartType('area').chartHeight(110).height()
         )
             .height('148px')
-            .backgroundColor(Theme.darkBackgroundColor)
+            .background(Theme.darkBackgroundColor)
             .cornerRadius('12px')
             .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
             .tabIndex(0)

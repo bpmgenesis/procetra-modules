@@ -26,8 +26,7 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                 .height(),
             HStack({ spacing: 10 })(
                 ...ForEach(params?.metricBoxNodels)((metricBoxModel, index) =>
-                Text('sad')
-                 //MetricBox(metricBoxModel, selectedIndex === index).onClick(() => setSelectedIndex(index)),
+                    MetricBox(metricBoxModel, selectedIndex === index).onClick(() => setSelectedIndex(index)),
                 )
             ).height(150),
             TileBox(
@@ -66,7 +65,7 @@ export function MetricsSection(params: MVIMetricSection): UIView {
                                 minorTickLines: { width: 0 }
                             })
                             .backgroundColor('transparent'),
-                            
+
                     )
                 )
             ).height('300px')
