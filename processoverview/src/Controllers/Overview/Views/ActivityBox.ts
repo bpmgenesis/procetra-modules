@@ -1,5 +1,5 @@
 import { int, Convert } from '@tuval/core';
-import { UIView, VStack, Text, Alignment, Icon } from '@tuval/forms';
+import { UIView, VStack, Text, Alignment, Icon, Theme } from '@tuval/forms';
 
 export interface MVIActivityBox {
     activityName: string;
@@ -23,9 +23,9 @@ export function ActivityBox(params: MVIActivityBox): UIView {
                 Text(`${params.eventCount} Events`).fontFamily('Proxima Nova').fontSize('14px').foregroundColor('#888'),
             )
                 .padding('20px')
-                .backgroundColor('rgb(255,255,255,60%)')
+                .backgroundColor(Theme.secondaryBackgroundColor)
+                .shadow({ default: '0px 3px 12px var(--application-border-color)', focus: '0 0 3px 1px #00c3ff' })
                 .cornerRadius('12px')
-                .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
                 .tabIndex(0)
         )
             /* .border('solid var(--border-width) yellow') */
