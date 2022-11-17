@@ -11,7 +11,8 @@ import {
     UIView,
     VDivider,
     VStack,
-    UISkeleton
+    UISkeleton,
+    Theme
 } from '@tuval/forms';
 
 import { TileBoxHeaderText } from '../../../Views/TileBoxHeaderText';
@@ -36,9 +37,10 @@ export function HappyPathGaugeBox(params: MIHappyPath): UIView {
                 )
             )
                 .height('245px')
-                .backgroundColor('rgb(255,255,255,60%)')
+                .backgroundColor(Theme.secondaryBackgroundColor)
+                .shadow({ default: '0px 3px 12px var(--application-border-color)', focus: '0 0 3px 1px #00c3ff' })
                 .cornerRadius('12px')
-                .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
+                
                 .marginHorizontal('2px')
                 .tabIndex(0)
     )
@@ -69,16 +71,16 @@ export function HappyPathBox2(params: MIHappyPath): UIView {
                     .foregroundColor('#888888'),
             )
                 .height('245px')
-                .backgroundColor('rgb(255,255,255,60%)')
+                .backgroundColor(Theme.secondaryBackgroundColor)
+                .shadow({ default: '0px 3px 12px var(--application-border-color)', focus: '0 0 3px 1px #00c3ff' })
                 .cornerRadius('12px')
-                .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
-                .marginHorizontal('2px')
+                 .marginHorizontal('2px')
                 .tabIndex(0)
     )
 }
 
 function dhm(t) {
-    debugger;
+ 
     var cd = 24 * 60 * 60 * 1000,
         ch = 60 * 60 * 1000,
         d = Math.floor(t / cd),
@@ -118,9 +120,9 @@ export function HappyPathBox3(params: MIHappyPath): UIView {
                 .foregroundColor('#888888'),
         )
             .height('245px')
-            .backgroundColor('rgb(255,255,255,60%)')
+            .backgroundColor(Theme.secondaryBackgroundColor)
+            .shadow({ default: '0px 3px 12px var(--application-border-color)', focus: '0 0 3px 1px #00c3ff' })
             .cornerRadius('12px')
-            .shadow({ default: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 2px 5px 0 rgb(0 0 0 / 5%)', focus: '0 0 3px 1px #00c3ff' })
             .marginHorizontal('2px')
             .tabIndex(0)
     )

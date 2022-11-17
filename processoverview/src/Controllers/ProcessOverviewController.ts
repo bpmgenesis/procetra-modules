@@ -15,7 +15,8 @@ import {
     UIScene,
     UIView,
     VStack,
-    UIRouteOutlet
+    UIRouteOutlet,
+    cHorizontal
 } from '@tuval/forms';
 
 import { OverviewController } from './Overview/OverviewController';
@@ -141,7 +142,9 @@ export class ProcessOverviewController extends UIController {
                             //this.currentController
                             UIRouteOutlet().width('100%').height('100%')
 
-                        ).overflowX('hidden').overflowY('auto')
+                        )
+                        .padding(cHorizontal, 80)
+                        .overflowX('hidden').overflowY('auto')
                     )
                         .padding(10)
                         .background(TApplication.IsPortal ? '#f1f1f1' : '')
@@ -159,8 +162,10 @@ export class ProcessOverviewController extends UIController {
         return (
             VStack(
                 ProjectMainMenu(this,this.project, 'Process Overview', [], () => alert(''), null, [], []),
-                this.view_Content()
-            ).background('var(--dark-background-color)')
+                this.view_Content() 
+            )
+            .background('var(--dark-background-color)')
+           
         )
     }
 }

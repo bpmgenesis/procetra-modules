@@ -122,12 +122,19 @@ export class OverviewController extends UIController {
 
             MiningBrokerClient.GetDailyCasesPerMonth(this.project.project_id).then((info: any) => {
                 const result = [];
+                
+                info.daily_cases_per_month = info.daily_cases_per_month.sort((a,b) => a.date_index.localeCompare(b.date_index));
+                console.log(info.daily_cases_per_month)
                 for (let i = 0; i < info.daily_cases_per_month.length; i++) {
-                    result.push({
-                        x: new Date(info.daily_cases_per_month[i].year, info.daily_cases_per_month[i].month - 1, 1),
-                        y: Math.round(info.daily_cases_per_month[i].case_rate)
-                    });
+                    
+                        result.push({
+                            x: new Date(info.daily_cases_per_month[i].year, info.daily_cases_per_month[i].month - 1, 1),
+                            y: Math.round(info.daily_cases_per_month[i].case_rate)
+                        });
+                    
                 }
+                console.log(result)
+
                 this.metricSectionModel = {
                     metricBoxNodels: [
                         {
@@ -224,8 +231,8 @@ export class OverviewController extends UIController {
                 HappyPathSection(this.happyPathModel),
                 ActivitySection(this.activities)
             )
-            .padding(cHorizontal, 80)
-            .position(PositionTypes.Absolute)
+                
+                .position(PositionTypes.Absolute)
         )
     }
 }

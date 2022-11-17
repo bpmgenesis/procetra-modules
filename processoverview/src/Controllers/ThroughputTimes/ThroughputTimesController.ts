@@ -1,4 +1,4 @@
-import { Services, MiningBrokerClient,IProjectModel } from '@procetra/common';
+import { Services, MiningBrokerClient,IProjectModel, LoadingScreen } from '@procetra/common';
 import { UIController, UIView, Text, VStack, PositionTypes, Alignment, cTopLeading, State } from '@tuval/forms';
 import { BottleneckSection } from './View/BottleneckSection';
 import { ThroughputTimeSection } from './View/ThroughputTimeSection';
@@ -9,6 +9,7 @@ import { PageNavigate } from '../../Views/PageNavigate';
 
 export class ThroughputTimesController extends UIController {
 
+    @State()
     private project: IProjectModel;
 
     @State()
@@ -32,7 +33,6 @@ export class ThroughputTimesController extends UIController {
         MiningBrokerClient.GetProjectById(project_id).then(project => {
 
             this.project = project;
-            const session_id = Services.StateService.GetSessionId();
             MiningBrokerClient.GetThroughputTimes(this.project.project_id, '').then((info: any) => {
                 const result = [];
                 for (let key in info) {
@@ -67,6 +67,7 @@ export class ThroughputTimesController extends UIController {
 
     public LoadView(): UIView {
         return (
+            this.project == null ? LoadingScreen() :
             VStack({ alignment: cTopLeading, spacing: 20 })(
                 PageNavigate(this.project?.project_id,1,this.navigotor),
                 ThroughputTimeSection(this.throughputTimeData),
